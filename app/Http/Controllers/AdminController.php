@@ -21,7 +21,9 @@ class AdminController extends Controller
         DB::table('Kriterias')->insert([
             'kode_kriteria' => $request->kode_kriteria,
             'nama_kriteria' => $request->nama_kriteria,
-            'atribut' => $request->atribut
+            'atribut' => $request->atribut,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]);
         return redirect('/kriteria');
     }
@@ -60,11 +62,28 @@ class AdminController extends Controller
             ->orderBy('nilaibobotkriterias.kode_kriteria1', 'asc')
             ->orderBy('nilaibobotkriterias.kode_kriteria2', 'asc')
             ->get();
+        
+        // var_dump($nilai_bobot_kriteria);
+        // exit();
+
+        $criterias=array();
+        $data=array();
+        foreach($nilai_bobot_kriteria as $n){
+            $criterias[$n->kode_kriteria1]=$n->nama_kriteria_1;
+            $data[$n->kode_kriteria1][$n->kode_kriteria2]=$n->nilai;
+        }
+
+        // var_dump($data);
+        // exit();
 
         return view ('admin.nilaiBobotKriteria', 
             ['kriteria_option' => $kriteria_option, 
             'ahp_nilai_option' => $ahp_nilai_option,
-            'nilaiBobotKriteria' => $nilaiBobotKriteria
+            'data'=>$data,
         ]);
+    }
+    public function alternative(){
+        $alternative = DB::table('Alternatives')->get();
+        return view ('admin.alternative', ['alternative' => $alternative]);
     }
 }

@@ -1,0 +1,4 @@
+1. untuk kriteria ditentukan sendiri atau berdasarkan survey, adakah minimum kriteria yang dipakai
+kriteria : lama pengerjaan, jumlah orang, tingkat kesulitan
+2. derajat kepentingan ditentukan sendiri atau survey juga
+contohnya misal : waktu lebih penting dari jumlah orang

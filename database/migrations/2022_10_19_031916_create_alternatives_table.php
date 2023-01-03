@@ -14,7 +14,7 @@ class CreateAlternativesTable extends Migration
     public function up()
     {
         Schema::create('alternatives', function (Blueprint $table) {
-            $table->string('kode_alternative',10)->primary();
+            $table->string('kode_alternative', 5)->primary();
             $table->string('nama_alternative', 50);
             $table->string('keterangan', 100);
             $table->float('total', 8, 2)->nullable();

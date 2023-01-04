@@ -18,6 +18,16 @@ class AdminController extends Controller
         return view ('admin.addKriteria');
     }
     public function storeKriteria(Request $request){
+        $kode_kriteria=$request->kode_kriteria;
+        $nama_kriteria=$request->nama_kriteria;
+        $atribut=$request->atribut;
+
+        $this->validate($request,[
+            'kode_kriteria' => 'required|unique:Kriterias',
+            'nama_kriteria' => 'required',
+            'atribut' => 'required'
+        ]);
+
         DB::table('Kriterias')->insert([
             'kode_kriteria' => $request->kode_kriteria,
             'nama_kriteria' => $request->nama_kriteria,

@@ -11,10 +11,16 @@
                 <div class="form-group">
                     <label for="kode_kriteria">Kode Kriteria</label>
                     <input type="text" name="kode_kriteria" id="kode_kriteria" class="form-control">
+                    @error('kode_kriteria')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="nama_kriteria">Nama Kriteria</label>
                     <input type="text" name="nama_kriteria" id="nama_kriteria" class="form-control">
+                    @error('nama_kriteria')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <!-- form atribut select box with option benefit / cost -->
                 <div class="form-group">
@@ -23,6 +29,9 @@
                         <option value="cost">Cost</option>
                         <option value="benefit">Benefit</option>
                     </select>
+                    @error('atribut')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

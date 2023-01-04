@@ -16,4 +16,4 @@ Route::middleware('auth')->group(function(){
     Route::get('/alternative/nilai_bobot_alternative', 'AdminController@nilaiBobotAlternative')->name('admin.nilai_bobot_alternative');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

@@ -35,13 +35,29 @@ class AdminController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
+        DB::table('Rel_Kriterias')->insert([
+            ['id1'=>$kode_kriteria, 
+            'id2'=>$kode_kriteria, 
+            'nilai'=>1, 
+            'created_at' => date('Y-m-d H:i:s'), 
+            'updated_at' => date('Y-m-d H:i:s')]
+        ]);
+        DB::insert("INSERT INTO Rel_Kriterias(id1, id2, nilai, created_at, updated_at) SELECT kode_kriteria, '$kode_kriteria', 1, NOW(), NOW() FROM Kriterias WHERE kode_kriteria<>'$kode_kriteria'");
+        DB::insert("INSERT INTO Rel_Alternatives(kode_alternative, kode_kriteria, nilai, created_at, updated_at) SELECT kode_alternative, '$kode_kriteria', -1, NOW(), NOW()  FROM Alternatives");
+
         return redirect('/kriteria');
+
     }
     public function editKriteria($kode_kriteria){
         $kriteria = DB::table('Kriterias')->where('kode_kriteria',$kode_kriteria)->get();
         return view('admin.editKriteria', ['kriteria' => $kriteria]);
     }
     public function updateKriteria(Request $request){
+        $this->validate($request,[
+            'kode_kriteria' => 'required',
+            'nama_kriteria' => 'required',
+            'atribut' => 'required'
+        ]);
         DB::table('Kriterias')->where('kode_kriteria',$request->kode_kriteria)->update([
             'nama_kriteria' => $request->nama_kriteria,
             'atribut' => $request->atribut
@@ -50,6 +66,13 @@ class AdminController extends Controller
     }
     public function deleteKriteria($kode_kriteria){
         DB::table('Kriterias')->where('kode_kriteria',$kode_kriteria)->delete();
+        DB::table('Rel_Kriterias')
+            ->where('id1',$kode_kriteria)
+            ->orWhere('id2',$kode_kriteria)
+            ->delete();
+        DB::table('Rel_Alternatives')
+            ->where('kode_kriteria',$kode_kriteria)
+            ->delete();
         return redirect('/kriteria');
     }
     public function nilaiBobotKriteria(){
@@ -66,11 +89,11 @@ class AdminController extends Controller
             '9' => 'Mutlak sangat penting dari',
         );
         // nilaibobotkriteria join kriteria order by kode_kriteria
-        $nilai_bobot_kriteria = DB::table('nilaibobotkriterias')
-            ->join('kriterias', 'nilaibobotkriterias.kode_kriteria1', '=', 'kriterias.kode_kriteria')
-            ->select('nilaibobotkriterias.*', 'kriterias.nama_kriteria as nama_kriteria_1')
-            ->orderBy('nilaibobotkriterias.kode_kriteria1', 'asc')
-            ->orderBy('nilaibobotkriterias.kode_kriteria2', 'asc')
+        $nilai_bobot_kriteria = DB::table('Rel_Kriterias')
+            ->join('kriterias', 'Rel_Kriterias.id1', '=', 'kriterias.kode_kriteria')
+            ->select('Rel_Kriterias.*', 'kriterias.nama_kriteria as nama_kriteria_1')
+            ->orderBy('Rel_Kriterias.id1', 'asc')
+            ->orderBy('Rel_Kriterias.id2', 'asc')
             ->get();
         
         // var_dump($nilai_bobot_kriteria);
@@ -79,8 +102,8 @@ class AdminController extends Controller
         $criterias=array();
         $data=array();
         foreach($nilai_bobot_kriteria as $n){
-            $criterias[$n->kode_kriteria1]=$n->nama_kriteria_1;
-            $data[$n->kode_kriteria1][$n->kode_kriteria2]=$n->nilai;
+            $criterias[$n->id1]=$n->nama_kriteria_1;
+            $data[$n->id1][$n->id2]=$n->nilai;
         }
 
         // var_dump($data);
@@ -95,5 +118,8 @@ class AdminController extends Controller
     public function alternative(){
         $alternative = DB::table('Alternatives')->get();
         return view ('admin.alternative', ['alternative' => $alternative]);
+    }
+    public function addAlternative(){
+        return view ('admin.addAlternative');
     }
 }

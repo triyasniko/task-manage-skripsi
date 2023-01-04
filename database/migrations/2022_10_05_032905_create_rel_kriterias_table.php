@@ -9,7 +9,7 @@ class CreateRelKriteriasTable extends Migration
     public function up()
     {
         Schema::create('Rel_Kriterias', function (Blueprint $table) {
-            $table->string('id_rel_kriterias', 10)->primary();
+            $table->increments('id_rel_kriterias', 10);
             $table->string('id1');
             $table->string('id2');
             $table->string('nilai');

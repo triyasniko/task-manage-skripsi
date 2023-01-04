@@ -24,8 +24,8 @@
                             <td>{{ $k->nama_kriteria }}</td>
                             <td>{{ $k->atribut }}</td>
                             <td>
-                                <a href="{{ route('kriteria/edit',[$k->kode_kriteria]) }}" class="btn btn-outline-warning">Edit</a>
-                                <a href="{{ route('kriteria/delete',[$k->kode_kriteria]) }}" class="btn btn-outline-danger">Delete</a>
+                                <a href="{{ route('kriteria/edit',[$k->kode_kriteria]) }}" class="btn btn-outline-secondary text-warning">Edit</a>
+                                <a href="{{ route('kriteria/delete',[$k->kode_kriteria]) }}" class="btn btn-outline-secondary text-danger">Delete</a>
                             </td>
                         </tr>
                         @endforeach

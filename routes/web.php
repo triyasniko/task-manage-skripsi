@@ -12,11 +12,20 @@ Route::middleware('auth')->group(function(){
     Route::post('/kriteria/update', 'AdminController@updateKriteria')->name('kriteria/update');
     Route::get('/kriteria/delete/{id}', 'AdminController@deleteKriteria')->name('kriteria/delete');
 
-    Route::get('/kriteria/nilai_bobot_kriteria', 'AdminController@nilaiBobotKriteria')->name('admin.nilai_bobot_kriteria');
+    Route::get('/kriteria/rel_kriteria', 'AdminController@relKriteria')->name('admin.rel_kriteria');
+    Route::post('/kriteria/rel_kriteria/update', 'AdminController@updateRelKriteria')->name('admin.rel_kriteria.update');
+    // Route::post('/kriteria/rel_kriteria/update',function(){
+    //     echo "test masuk ke route";
+    // })->name('admin.rel_kriteria.update');
 
     Route::get('/alternative', 'AdminController@alternative')->name('admin.alternative');
     Route::get('/alternative/add', 'AdminController@addAlternative')->name('alternative/add');
-    Route::get('/alternative/nilai_bobot_alternative', 'AdminController@nilaiBobotAlternative')->name('admin.nilai_bobot_alternative');
+    Route::post('/alternative/store', 'AdminController@storeAlternative')->name('alternative/store');
+    Route::get('/alternative/edit/{id}', 'AdminController@editAlternative')->name('alternative/edit');
+    Route::post('/alternative/update', 'AdminController@updateAlternative')->name('alternative/update');
+    Route::get('/alternative/delete/{id}', 'AdminController@deleteAlternative')->name('alternative/delete');
+    
+    Route::get('/alternative/rel_alternative', 'AdminController@relAlternative')->name('admin.rel_alternative');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

@@ -12,7 +12,7 @@ class CreateRelKriteriasTable extends Migration
             $table->increments('id_rel_kriterias', 10);
             $table->string('id1');
             $table->string('id2');
-            $table->string('nilai');
+            $table->double('nilai');
             $table->timestamps();
         });
     }

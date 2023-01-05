@@ -12,12 +12,23 @@
                     <thead>
                         <tr>
                             <th>Kode Alternative</th>
-                            <th>Nama Kriteria</th>
+                            <th>Nama Alternative</th>
                             <th>Keterangan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($alternatives as $alternative)
+                        <tr>
+                            <td>{{ $alternative->kode_alternative }}</td>
+                            <td>{{ $alternative->nama_alternative }}</td>
+                            <td>{{ $alternative->keterangan }}</td>
+                            <td>
+                                <a href="{{ route('alternative/edit', $alternative->kode_alternative) }}" class="btn btn-outline-secondary text-warning">Edit</a>
+                                <a href="{{ route('alternative/delete', $alternative->kode_alternative) }}" class="btn btn-outline-secondary text-danger">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

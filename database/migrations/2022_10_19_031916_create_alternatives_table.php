@@ -18,7 +18,7 @@ class CreateAlternativesTable extends Migration
             $table->string('nama_alternative', 50);
             $table->string('keterangan', 100);
             $table->float('total', 8, 2)->nullable();
-            $table->unsignedInteger('rank');
+            $table->unsignedInteger('rank')->nullable();
             $table->timestamps();
         });
 

@@ -35,13 +35,7 @@ class AdminController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-        DB::table('Rel_Kriterias')->insert([
-            ['id1'=>$kode_kriteria, 
-            'id2'=>$kode_kriteria, 
-            'nilai'=>1, 
-            'created_at' => date('Y-m-d H:i:s'), 
-            'updated_at' => date('Y-m-d H:i:s')]
-        ]);
+        DB::insert("INSERT INTO Rel_Kriterias(id1, id2, nilai, created_at, updated_at) SELECT '$kode_kriteria', kode_kriteria, 1, NOW(), NOW() FROM Kriterias");
         DB::insert("INSERT INTO Rel_Kriterias(id1, id2, nilai, created_at, updated_at) SELECT kode_kriteria, '$kode_kriteria', 1, NOW(), NOW() FROM Kriterias WHERE kode_kriteria<>'$kode_kriteria'");
         DB::insert("INSERT INTO Rel_Alternatives(kode_alternative, kode_kriteria, nilai, created_at, updated_at) SELECT kode_alternative, '$kode_kriteria', -1, NOW(), NOW()  FROM Alternatives");
 
@@ -75,7 +69,7 @@ class AdminController extends Controller
             ->delete();
         return redirect('/kriteria');
     }
-    public function nilaiBobotKriteria(){
+    public function relKriteria(){
         $kriteria_option = DB::table('Kriterias')->get();
         $ahp_nilai_option = array(
             '1' => 'Sama penting dengan',
@@ -89,37 +83,117 @@ class AdminController extends Controller
             '9' => 'Mutlak sangat penting dari',
         );
         // nilaibobotkriteria join kriteria order by kode_kriteria
-        $nilai_bobot_kriteria = DB::table('Rel_Kriterias')
+        $rel_kriterias = DB::table('Rel_Kriterias')
             ->join('kriterias', 'Rel_Kriterias.id1', '=', 'kriterias.kode_kriteria')
-            ->select('Rel_Kriterias.*', 'kriterias.nama_kriteria as nama_kriteria_1')
+            ->select('Rel_Kriterias.*', 'kriterias.nama_kriteria')
             ->orderBy('Rel_Kriterias.id1', 'asc')
             ->orderBy('Rel_Kriterias.id2', 'asc')
             ->get();
         
-        // var_dump($nilai_bobot_kriteria);
+        // dd($rel_kriterias);
         // exit();
 
-        $criterias=array();
-        $data=array();
-        foreach($nilai_bobot_kriteria as $n){
-            $criterias[$n->id1]=$n->nama_kriteria_1;
-            $data[$n->id1][$n->id2]=$n->nilai;
-        }
+        // $criterias=array();
+        // $data=array();
 
-        // var_dump($data);
         // exit();
 
-        return view ('admin.nilaiBobotKriteria', 
+        return view ('admin.relKriteria', 
             ['kriteria_option' => $kriteria_option, 
             'ahp_nilai_option' => $ahp_nilai_option,
-            'data'=>$data,
+            'rel_kriterias' => $rel_kriterias
         ]);
     }
+    public function updateRelKriteria(Request $request){
+        $id1=$request->id1;
+        $id2=$request->id2;
+        $nilai=abs($request->nilai);
+        // dd($nilai==1);
+        // $this->validate($request,[
+        //     'id1' => 'required',
+        //     'id2' => 'required',
+        //     'nilai' => 'required'
+        // ]);
+        // if condition if id1=id2 and nilai!=1
+        // $id1=001;
+        // $id2=001;
+        // $nilai=2;
+        if($id1==$id2 AND $nilai!=1){
+            // dd("sama");
+            $request->session()->flash('alert_message_error', 'Nilai harus 1 jika kriteria sama');
+            return redirect('/kriteria/rel_kriteria');
+        }else{
+            DB::table('Rel_Kriterias')
+            ->where('id1',$id1)
+            ->where('id2',$id2)
+            ->update([
+                'nilai' => $nilai
+            ]);
+            DB::table('Rel_Kriterias')
+                ->where('id1',$id2)
+                ->where('id2',$id1)
+                ->update([
+                    'nilai' => 1/$nilai
+            ]);
+            $request->session()->flash('alert_message_success', 'Data berhasil diupdate');
+            return redirect('/kriteria/rel_kriteria');
+        }
+        
+    }
     public function alternative(){
-        $alternative = DB::table('Alternatives')->get();
-        return view ('admin.alternative', ['alternative' => $alternative]);
+        $alternatives = DB::table('Alternatives')->get();
+        return view ('admin.alternative', ['alternatives' => $alternatives]);
     }
     public function addAlternative(){
         return view ('admin.addAlternative');
+    }
+    public function storeAlternative(Request $request){
+        $kode_alternative=$request->kode_alternative;
+        $nama_alternative=$request->nama_alternative;
+        $keterangan=$request->keterangan;
+        $this->validate($request,[
+            'kode_alternative' => 'required|unique:Alternatives',
+            'nama_alternative' => 'required',
+            'keterangan' => 'required'
+        ]);
+        DB::table('Alternatives')->insert([
+            'kode_alternative' => $request->kode_alternative,
+            'nama_alternative' => $request->nama_alternative,
+            'keterangan' => $request->keterangan,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::insert("INSERT INTO Rel_Alternatives(kode_alternative, kode_kriteria, nilai, created_at, updated_at) SELECT '$kode_alternative', kode_kriteria, -1, NOW(), NOW() FROM Kriterias");
+        return redirect('/alternative');
+    }
+    public function editAlternative($kode_alternative){
+        $alternative = DB::table('Alternatives')->where('kode_alternative',$kode_alternative)->get();
+        return view('admin.editAlternative', ['alternative' => $alternative]);
+    }
+    public function updateAlternative(Request $request){
+        $this->validate($request,[
+            'kode_alternative' => 'required',
+            'nama_alternative' => 'required',
+            'keterangan' => 'required'
+        ]);
+        DB::table('Alternatives')->where('kode_alternative',$request->kode_alternative)->update([
+            'nama_alternative' => $request->nama_alternative,
+            'keterangan' => $request->keterangan
+        ]);
+        return redirect('/alternative');
+    }
+    public function deleteAlternative($kode_alternative){
+        DB::table('Alternatives')->where('kode_alternative',$kode_alternative)->delete();
+        DB::table('Rel_Alternatives')
+            ->where('kode_alternative',$kode_alternative)
+            ->delete();
+        return redirect('/alternative');
+    }
+    public function relAlternative(){
+        $heads=DB::table('Kriterias')
+                ->selectRaw('Count(*) as count')
+                ->get();
+
+        return view ('admin.relAlternative', ['heads' => $heads]);
     }
 }

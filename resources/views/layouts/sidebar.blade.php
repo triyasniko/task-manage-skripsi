@@ -16,14 +16,14 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Kriteria</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.kriteria') }}">Kriteria</a></li>
-                    <li><a class="nav-link" href="{{ route('admin.nilai_bobot_kriteria') }}">Nilai Bobot Kriteria</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.rel_kriteria') }}">Nilai Bobot Kriteria</a></li>
                 </ul>
               </li>
               <li class="nav-item has-dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Alternative</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.alternative') }}">Alternative</a></li>
-                    <li><a class="nav-link" href="{{ route('admin.nilai_bobot_alternative') }}">Nilai Bobot Alternative</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.rel_alternative') }}">Nilai Bobot Alternative</a></li>
                 </ul>
             </ul>
 <!-- 

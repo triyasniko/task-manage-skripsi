@@ -26,6 +26,11 @@ Route::middleware('auth')->group(function(){
     Route::get('/alternative/delete/{id}', 'AdminController@deleteAlternative')->name('alternative/delete');
     
     Route::get('/alternative/rel_alternative', 'AdminController@relAlternative')->name('admin.rel_alternative');
+    Route::get('/alternative/rel_alternative/edit/{kode_alternative}', 'AdminController@editRelAlternative')->name('admin.rel_alternative_edit');
+    Route::post('/alternative/rel_alternative/update', 'AdminController@updateRelAlternative')->name('admin.rel_alternative.update');
+    
+    Route::get('/perhitungan', 'AdminController@perhitungan')->name('admin.perhitungan');
+
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

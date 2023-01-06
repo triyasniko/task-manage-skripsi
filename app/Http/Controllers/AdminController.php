@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\SiteHelpers;
+
 
 class AdminController extends Controller
 {
@@ -193,7 +195,67 @@ class AdminController extends Controller
         $heads=DB::table('Kriterias')
                 ->selectRaw('Count(*) as count')
                 ->get();
-
-        return view ('admin.relAlternative', ['heads' => $heads]);
+        $alternatives=DB::table('Alternatives')
+                ->get();
+        
+        $data=SiteHelpers::TOPSIS_get_hasil_analisa();
+        return view ('admin.relAlternative', [
+            'heads' => $heads, 
+            'alternatives' => $alternatives,
+            'data' => $data
+        ]);
     }
+    public function editRelAlternative($kode_alternative){
+        $nama_alternative=DB::table('Alternatives')
+            ->select('nama_alternative')
+            ->where('kode_alternative', '=', $kode_alternative)
+            ->get();
+        $rel_alternatives = 
+             DB::table('Rel_Alternatives as ra')
+            ->join('Kriterias as k', 'k.kode_kriteria', '=', 'ra.kode_kriteria')
+            ->select('ra.id_rel_alternatives', 'k.kode_kriteria', 'k.nama_kriteria', 'ra.nilai')
+            ->where('kode_alternative', '=', $kode_alternative)
+            ->orderBy('kode_kriteria')
+            ->get();
+
+        // dd($alternative);
+        return view('admin.editRelAlternative', ['rel_alternatives' => $rel_alternatives, 'nama_alternative' => $nama_alternative]);
+    }
+
+    public function updateRelAlternative(Request $request){
+        // dd($request->all());
+        $rel_alternatives=$request->all();
+        $new_rel_alternatives = [];
+        foreach ($rel_alternatives as $key => $value) {
+            if (strpos($key, 'id-') === 0) {
+                $id = str_replace('id-', '', $key);
+                $new_rel_alternatives[$id] = $value;
+            }
+        }
+
+        foreach ($new_rel_alternatives as $id => $value) {
+            DB::table('Rel_Alternatives')
+                ->where('id_rel_alternatives', '=', $id)
+                ->update(['nilai' => $value]);
+        }
+
+        return redirect(route("admin.rel_alternative"));
+    }
+
+    public function perhitungan(){
+        $rel_alternatives=DB::table('Rel_Alternatives')
+                          ->where('nilai', '>', 0)
+                          ->get();
+        // dd($rel_alternatives);
+        $kriterias=SiteHelpers::get_kriteria();
+        $alternatives=SiteHelpers::get_alternative();
+        // dd($alternatives);
+        // dd($kriterias);
+        return view ('admin.perhitungan', [
+            'rel_alternatives' => $rel_alternatives, 
+            'kriterias' => $kriterias,
+            'alternatives' => $alternatives
+        ]);
+    }
+
 }

@@ -25,6 +25,11 @@
                     <li><a class="nav-link" href="{{ route('admin.alternative') }}">Alternative</a></li>
                     <li><a class="nav-link" href="{{ route('admin.rel_alternative') }}">Nilai Bobot Alternative</a></li>
                 </ul>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.perhitungan') }}" class="nav-link"><i class="fas fa-fire"></i><span>Perhitungan</span></a>
+              </li>
+
             </ul>
 <!-- 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

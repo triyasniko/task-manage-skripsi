@@ -15,6 +15,7 @@
                         <?php
                         // dd($heads[0]->count);
                         $heads=$heads[0]->count;
+                        $data=SiteHelpers::TOPSIS_get_hasil_analisa();
                         if($heads>0):
                             for($a = 1; $a<=$heads; $a++){
                                 echo "<th>C$a</th>";
@@ -25,7 +26,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                        
+                    <?php
+                        foreach($alternatives as $row):?>
+                        <tr>
+                            <td><?=$row->kode_alternative?></td>
+                            <td><?=$row->nama_alternative?></td>
+                            <?php foreach($data[$row->kode_alternative] as $key => $val):?>
+                            <td><?=$val?></td>
+                            <?php endforeach?>
+                            <td>
+                                <a href="{{ route('admin.rel_alternative_edit', ['kode_alternative' => $row->kode_alternative]) }}" 
+                                class="btn btn-xs btn-outline-secondary text-warning">Ubah</a>
+                            </td>
+                        </tr>
+                        <?php endforeach;?>
                     </tbody>
                 </table>
             </div>

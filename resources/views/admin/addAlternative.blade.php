@@ -33,7 +33,7 @@
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <!-- back button -->
-                <a href="{{ route('admin.alternative') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('admin.alternative') }}" class="btn btn-link">Cancel</a>
             </form>
         </div>
     </div>

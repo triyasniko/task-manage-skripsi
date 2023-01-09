@@ -13,7 +13,7 @@ class CreateRelAlternativesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Rel_Alternatives', function (Blueprint $table) {
+        Schema::create('rel_alternatives', function (Blueprint $table) {
             $table->increments('id_rel_alternatives', 10);
             $table->string('kode_alternative');
             $table->string('kode_kriteria');
@@ -29,6 +29,6 @@ class CreateRelAlternativesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Rel_Alternatives');
+        Schema::dropIfExists('rel_alternatives');
     }
 }

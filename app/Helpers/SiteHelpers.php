@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\DB;
 
 class SiteHelpers{
     public static function TOPSIS_get_hasil_analisa(){
-        $results=DB::table('Alternatives as a')
-        ->join('Rel_Alternatives as ra', 'ra.kode_alternative', '=', 'a.kode_alternative')
-        ->join('Kriterias as k', 'k.kode_kriteria', '=', 'ra.kode_kriteria')
+        $results=DB::table('alternatives as a')
+        ->join('rel_alternatives as ra', 'ra.kode_alternative', '=', 'a.kode_alternative')
+        ->join('kriterias as k', 'k.kode_kriteria', '=', 'ra.kode_kriteria')
         ->select('a.kode_alternative', 'k.kode_kriteria', 'ra.nilai')
         ->orderBy('a.kode_alternative')
         ->orderBy('k.kode_kriteria')
@@ -18,7 +18,7 @@ class SiteHelpers{
         return $data;
     }
     public static function get_alternative(){
-        $results=DB::table('Alternatives')
+        $results=DB::table('alternatives')
         ->select('kode_alternative', 'nama_alternative')
         ->get();
         $ALTERNATIVE=array();
@@ -28,7 +28,7 @@ class SiteHelpers{
         return $ALTERNATIVE;
     }
     public static function get_kriteria(){
-        $results=DB::table('Kriterias')
+        $results=DB::table('kriterias')
         ->select('kode_kriteria', 'nama_kriteria', 'atribut')
         ->orderBy('kode_kriteria')
         ->get();
@@ -44,7 +44,7 @@ class SiteHelpers{
     }
     public static function AHP_get_relkriteria(){
         $relKriterias=array();
-        $query = DB::table('Rel_Kriterias as rk')
+        $query = DB::table('rel_Kriterias as rk')
             ->join('Kriterias as k', 'k.kode_kriteria', '=', 'rk.id1')
             ->select('k.nama_kriteria', 'rk.id1', 'rk.id2', 'nilai')
             ->orderBy('id1', 'asc')
@@ -248,7 +248,7 @@ class SiteHelpers{
             $newArray[$key]=$no++;
         }
         foreach($topsisNormal as $key => $value){
-            DB::table('Alternatives')
+            DB::table('alternatives')
             ->where('kode_alternative', $key)
             ->update([
                 'total' => $nilaiPref[$key],

@@ -8,7 +8,7 @@ class CreateKriteriasTable extends Migration
 {
     public function up()
     {
-        Schema::create('Kriterias', function (Blueprint $table) {
+        Schema::create('kriterias', function (Blueprint $table) {
             $table->string('kode_kriteria', 10)->primary();
             $table->string('nama_kriteria', 50);
             $table->string('atribut', 10);
@@ -23,6 +23,6 @@ class CreateKriteriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Kriterias');
+        Schema::dropIfExists('kriterias');
     }
 }

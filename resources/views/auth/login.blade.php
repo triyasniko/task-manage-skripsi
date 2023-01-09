@@ -31,7 +31,7 @@
                 <h4 class="font-weight-normal">
                   <span class="font-weight-bold"> Login Account </span><br>
                   Username : johndoe@gmail.com <br>
-                  Password : johndoe
+                  Password : johndoe1234
                 </h4>
                 <div class="card-header-action">
                     <a data-dismiss="#loginSample" class="btn btn-icon btn-danger" href="#"><i class="fas fa-times"></i></a>

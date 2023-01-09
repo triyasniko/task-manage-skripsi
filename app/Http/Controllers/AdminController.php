@@ -243,7 +243,7 @@ class AdminController extends Controller
     }
 
     public function perhitungan(){
-        $rel_alternatives=DB::table('Rel_Alternatives')
+        $rel_alternatives=DB::table('rel_alternatives')
                           ->where('nilai', '>', 0)
                           ->get();
         // dd($rel_alternatives);

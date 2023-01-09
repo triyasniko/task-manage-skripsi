@@ -54,7 +54,7 @@ class AdminController extends Controller
             'nama_kriteria' => 'required',
             'atribut' => 'required'
         ]);
-        DB::table('Kriterias')->where('kode_kriteria',$request->kode_kriteria)->update([
+        DB::table('kriterias')->where('kode_kriteria',$request->kode_kriteria)->update([
             'nama_kriteria' => $request->nama_kriteria,
             'atribut' => $request->atribut
         ]);
@@ -131,7 +131,7 @@ class AdminController extends Controller
             ->update([
                 'nilai' => $nilai
             ]);
-            DB::table('Rel_Kriterias')
+            DB::table('rel_kriterias')
                 ->where('id1',$id2)
                 ->where('id2',$id1)
                 ->update([

@@ -44,7 +44,7 @@ class SiteHelpers{
     }
     public static function AHP_get_relkriteria(){
         $relKriterias=array();
-        $query = DB::table('rel_Kriterias as rk')
+        $query = DB::table('rel_kriterias as rk')
             ->join('Kriterias as k', 'k.kode_kriteria', '=', 'rk.id1')
             ->select('k.nama_kriteria', 'rk.id1', 'rk.id2', 'nilai')
             ->orderBy('id1', 'asc')

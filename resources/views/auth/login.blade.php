@@ -26,7 +26,18 @@
             <div class="login-brand">
               <h2 class="text-primary">Taskify</h2>
             </div>
-
+            <div class="card card-primary" id="loginSample">
+              <div class="card-header">
+                <h4 class="font-weight-normal">
+                  <span class="font-weight-bold"> Login Account </span><br>
+                  Username : johndoe@gmail.com <br>
+                  Password : johndoe
+                </h4>
+                <div class="card-header-action">
+                    <a data-dismiss="#loginSample" class="btn btn-icon btn-danger" href="#"><i class="fas fa-times"></i></a>
+                </div>
+              </div>
+            </div>
             <div class="card card-primary">
               <div class="card-header"><h4>Login</h4></div>
 

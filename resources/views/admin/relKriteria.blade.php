@@ -19,12 +19,22 @@
             <!-- display alert message -->
             @if (session('alert_message_error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                    <span>×</span>
+                </button>
                 {{ session('alert_message_error') }}
+                </div>
             </div>
             @endif
             @if (session('alert_message_success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('alert_message_success') }}
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                    </button>
+                    {{ session('alert_message_success') }}
+                </div>
             </div>
             @endif
             <form action="{{ route('admin.rel_kriteria.update') }}" class="form-inline" method="post">

@@ -251,10 +251,45 @@ class AdminController extends Controller
         $alternatives=SiteHelpers::get_alternative();
         // dd($alternatives);
         // dd($kriterias);
+        $matriks=SiteHelpers::AHP_get_relkriteria();
+        // dd($matriks);
+        $totalKolom=SiteHelpers::AHP_get_total_kolom($matriks);
+        // dd($totalKolom);
+        $matriksNormal=SiteHelpers::AHP_normalize($matriks, $totalKolom);
+        $rata=SiteHelpers::AHP_get_rata($matriksNormal);
+        // dd($rata);
+        // $cekMmult=SiteHelpers::AHP_mmult($matriks, $rata);
+        // dd($cekMmult);
+        // echo "oi#########";
+        $constMeasure=SiteHelpers::AHP_consistency_measure($matriks, $rata);
+        // dd($constMeasure);
+        $nRI=SiteHelpers::AHP_get_nRI();
+        $topsisHasilAnalisa=SiteHelpers::TOPSIS_hasil_analisa();
+        $topsisNormal=SiteHelpers::TOPSIS_normalize(SiteHelpers::TOPSIS_get_hasil_analisa());
+        $topsisNormalTerbobot=SiteHelpers::TOPSIS_normalize_terbobot($topsisNormal, $rata);
+        $matriksIdeal=SiteHelpers::TOPSIS_solusi_ideal($topsisNormalTerbobot);
+        $jarakSolusi=SiteHelpers::TOPSIS_jarak_solusi($topsisNormalTerbobot, $matriksIdeal);
+        $nilaiPref=SiteHelpers::TOPSIS_preferensi($jarakSolusi);
+        $altRank=SiteHelpers::get_rank($alternatives, $topsisNormal, $nilaiPref);
+        // dd($altRank);
+
         return view ('admin.perhitungan', [
             'rel_alternatives' => $rel_alternatives, 
             'kriterias' => $kriterias,
-            'alternatives' => $alternatives
+            'alternatives' => $alternatives,
+            'matriks' => $matriks,
+            'totalKolom' => $totalKolom,
+            'matriksNormal' => $matriksNormal,
+            'rata' => $rata,
+            'constMeasure' => $constMeasure,
+            'nRI' => $nRI,
+            'topsisHasilAnalisa' => $topsisHasilAnalisa,
+            'topsisNormal' => $topsisNormal,
+            'topsisNormalTerbobot' => $topsisNormalTerbobot,
+            'matriksIdeal' => $matriksIdeal,
+            'jarakSolusi' => $jarakSolusi,
+            'nilaiPref' => $nilaiPref,
+            'altRank' => $altRank
         ]);
     }
 

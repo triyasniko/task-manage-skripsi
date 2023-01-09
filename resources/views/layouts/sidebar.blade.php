@@ -12,14 +12,16 @@
                 <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
               <!-- dropdown menu -->
-              <li class="nav-item has-dropdown">
+
+              <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Kriteria</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.kriteria') }}">Kriteria</a></li>
                     <li><a class="nav-link" href="{{ route('admin.rel_kriteria') }}">Nilai Bobot Kriteria</a></li>
                 </ul>
               </li>
-              <li class="nav-item has-dropdown">
+
+              <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Alternative</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.alternative') }}">Alternative</a></li>

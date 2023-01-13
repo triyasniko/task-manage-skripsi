@@ -8,11 +8,12 @@
           </div>
           <ul class="sidebar-menu">
               <!-- <li class="menu-header">Dashboard</li> -->
+              @if (Auth::user()->role == 'admin')
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
               <!-- dropdown menu -->
-
+              <!-- protect just role admin can see -->
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Kriteria</span></a>
                 <ul class="dropdown-menu">
@@ -20,7 +21,6 @@
                     <li><a class="nav-link" href="{{ route('admin.rel_kriteria') }}">Nilai Bobot Kriteria</a></li>
                 </ul>
               </li>
-
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Alternative</span></a>
                 <ul class="dropdown-menu">
@@ -31,7 +31,13 @@
               <li class="nav-item">
                 <a href="{{ route('admin.perhitungan') }}" class="nav-link"><i class="fas fa-fire"></i><span>Perhitungan</span></a>
               </li>
+              @endif
 
+              @if (Auth::user()->role == 'user')
+              <li class="nav-item">
+                <a href="{{ route('user.home') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              </li>
+              @endif
             </ul>
 <!-- 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

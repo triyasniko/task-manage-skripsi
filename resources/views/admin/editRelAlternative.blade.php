@@ -10,6 +10,7 @@
     <div class="card">
         <div class="card-body">
         <form action="{{ route('admin.rel_alternative.update') }}" method="POST">
+        {{-- @dd($rel_alternatives) --}}
         @csrf
         @foreach ($rel_alternatives as $rel_alt)
             <div class="form-group">

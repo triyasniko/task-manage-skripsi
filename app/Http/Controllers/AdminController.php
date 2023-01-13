@@ -41,7 +41,7 @@ class AdminController extends Controller
         DB::insert("INSERT INTO rel_kriterias(id1, id2, nilai, created_at, updated_at) SELECT kode_kriteria, '$kode_kriteria', 1, NOW(), NOW() FROM kriterias WHERE kode_kriteria<>'$kode_kriteria'");
         DB::insert("INSERT INTO rel_alternatives(kode_alternative, kode_kriteria, nilai, created_at, updated_at) SELECT kode_alternative, '$kode_kriteria', -1, NOW(), NOW()  FROM alternatives");
 
-        return redirect('/kriteria');
+        return redirect()->route("admin.kriteria");
 
     }
     public function editKriteria($kode_kriteria){
@@ -58,7 +58,7 @@ class AdminController extends Controller
             'nama_kriteria' => $request->nama_kriteria,
             'atribut' => $request->atribut
         ]);
-        return redirect('/kriteria');
+        return redirect()->route('admin.kriteria');
     }
     public function deleteKriteria($kode_kriteria){
         DB::table('kriterias')->where('kode_kriteria',$kode_kriteria)->delete();
@@ -69,7 +69,7 @@ class AdminController extends Controller
         DB::table('rel_alternatives')
             ->where('kode_kriteria',$kode_kriteria)
             ->delete();
-        return redirect('/kriteria');
+        return redirect()->route('admin.kriteria');
     }
     public function relKriteria(){
         $kriteria_option = DB::table('kriterias')->get();
@@ -123,7 +123,7 @@ class AdminController extends Controller
         if($id1==$id2 AND $nilai!=1){
             // dd("sama");
             $request->session()->flash('alert_message_error', 'Nilai harus 1 jika kriteria sama');
-            return redirect('/kriteria/rel_kriteria');
+            return redirect()->route('admin.rel_kriteria');
         }else{
             DB::table('rel_kriterias')
             ->where('id1',$id1)
@@ -138,7 +138,7 @@ class AdminController extends Controller
                     'nilai' => 1/$nilai
             ]);
             $request->session()->flash('alert_message_success', 'Data berhasil diupdate');
-            return redirect('/kriteria/rel_kriteria');
+            return redirect()->route('admin.rel_kriteria');
         }
         
     }
@@ -166,7 +166,7 @@ class AdminController extends Controller
             'updated_at' => date('Y-m-d H:i:s')
         ]);
         DB::insert("INSERT INTO rel_alternatives(kode_alternative, kode_kriteria, nilai, created_at, updated_at) SELECT '$kode_alternative', kode_kriteria, -1, NOW(), NOW() FROM kriterias");
-        return redirect('/alternative');
+        return redirect()->route('admin.alternative');
     }
     public function editAlternative($kode_alternative){
         $alternative = DB::table('alternatives')->where('kode_alternative',$kode_alternative)->get();
@@ -182,14 +182,14 @@ class AdminController extends Controller
             'nama_alternative' => $request->nama_alternative,
             'keterangan' => $request->keterangan
         ]);
-        return redirect('/alternative');
+        return redirect()->route('admin.alternative');
     }
     public function deleteAlternative($kode_alternative){
         DB::table('alternatives')->where('kode_alternative',$kode_alternative)->delete();
         DB::table('rel_alternatives')
             ->where('kode_alternative',$kode_alternative)
             ->delete();
-        return redirect('/alternative');
+        return redirect()->route('admin.alternative');
     }
     public function relAlternative(){
         $heads=DB::table('kriterias')

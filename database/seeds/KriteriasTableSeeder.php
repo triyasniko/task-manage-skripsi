@@ -50,35 +50,6 @@ class KriteriasTableSeeder extends Seeder
             ]
             
         ]);
-        // if(DB::table('users')->count() == 0){
-
-        //     DB::table('users')->insert([
-
-        //         [
-        //             'name' => 'Administrator',
-        //             'email' => 'admin@app.com',
-        //             'password' => bcrypt('password'),
-        //             'created_at' => date('Y-m-d H:i:s'),
-        //             'updated_at' => date('Y-m-d H:i:s'),
-        //         ],
-        //         [
-        //             'name' => 'Agency',
-        //             'email' => 'agency@app.com',
-        //             'password' => bcrypt('password'),
-        //             'created_at' => date('Y-m-d H:i:s'),
-        //             'updated_at' => date('Y-m-d H:i:s'),
-        //         ],
-        //         [
-        //             'name' => 'End',
-        //             'email' => 'endcustomer@app.com',
-        //             'password' => bcrypt('password'),
-        //             'created_at' => date('Y-m-d H:i:s'),
-        //             'updated_at' => date('Y-m-d H:i:s'),
-        //         ]
-
-        //     ]);
-            
-        // } else { echo "\e[31mTable is not empty, therefore NOT "; }
 
     }
 }

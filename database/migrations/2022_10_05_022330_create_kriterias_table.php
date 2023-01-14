@@ -9,7 +9,7 @@ class CreateKriteriasTable extends Migration
     public function up()
     {
         Schema::create('kriterias', function (Blueprint $table) {
-            $table->string('kode_kriteria', 10)->primary();
+            $table->string('kode_kriteria', 15)->primary();
             $table->string('nama_kriteria', 50);
             $table->string('atribut', 10);
             $table->timestamps();

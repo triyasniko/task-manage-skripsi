@@ -3,6 +3,10 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\DB;
 
 class SiteHelpers{
+    public static function get_user_id(){
+        $user_id=auth()->user()->id;
+        return $user_id;
+    }
     public static function TOPSIS_get_hasil_analisa(){
         $results=DB::table('alternatives as a')
         ->join('rel_alternatives as ra', 'ra.kode_alternative', '=', 'a.kode_alternative')

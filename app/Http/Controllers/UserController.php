@@ -12,6 +12,7 @@ class UserController extends Controller{
         $relAlternatives=DB::table('rel_alternatives')
         ->where('nilai', '>', 0)
         ->get();
+        
         return view('user.home', ['relAlternatives'=>$relAlternatives]);
     }
     public function storeActivity(Request $request){
@@ -25,6 +26,8 @@ class UserController extends Controller{
             'kode_alternative'=>$kode_alternative,
             'nama_alternative'=>$nama_alternative,
             'keterangan'=>$keterangan,
+            'status'=>'doing',
+            'user_id'=>SiteHelpers::get_user_id(),
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
         ]);

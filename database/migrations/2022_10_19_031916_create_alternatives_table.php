@@ -20,6 +20,7 @@ class CreateAlternativesTable extends Migration
             $table->float('total', 8, 2)->nullable();
             $table->unsignedInteger('rank')->nullable();
             $table->string('status', 10)->nullable(); //doing, done
+            $table->string('user_id', 10)->nullable();
             $table->timestamps();
         });
 

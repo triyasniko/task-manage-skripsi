@@ -12,7 +12,7 @@ class UserController extends Controller{
         $relAlternatives=DB::table('rel_alternatives')
         ->where('nilai', '>', 0)
         ->get();
-        
+
         return view('user.home', ['relAlternatives'=>$relAlternatives]);
     }
     public function storeActivity(Request $request){
@@ -37,7 +37,7 @@ class UserController extends Controller{
         $newRelKriteriasAlternative=[];
         $datelineDays=Carbon::parse($data['taskDeadline'])->diffInDays(Carbon::now());
         if($datelineDays<0){
-            $datelineDays=0;
+            $datelineDays=1;
         }
         $dataRelAlternatives=[
             $datelineDays,$data['besaranHonor'],

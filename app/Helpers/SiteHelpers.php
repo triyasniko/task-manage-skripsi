@@ -8,10 +8,12 @@ class SiteHelpers{
         return $user_id;
     }
     public static function TOPSIS_get_hasil_analisa(){
+        $id_user=SiteHelpers::get_user_id();
         $results=DB::table('alternatives as a')
         ->join('rel_alternatives as ra', 'ra.kode_alternative', '=', 'a.kode_alternative')
         ->join('kriterias as k', 'k.kode_kriteria', '=', 'ra.kode_kriteria')
         ->select('a.kode_alternative', 'k.kode_kriteria', 'ra.nilai')
+        ->where('a.user_id', $id_user)
         ->orderBy('a.kode_alternative')
         ->orderBy('k.kode_kriteria')
         ->get();
@@ -24,6 +26,7 @@ class SiteHelpers{
     public static function get_alternative(){
         $results=DB::table('alternatives')
         ->select('kode_alternative', 'nama_alternative')
+        ->where('user_id', SiteHelpers::get_user_id())
         ->get();
         $ALTERNATIVE=array();
         foreach($results as $result){

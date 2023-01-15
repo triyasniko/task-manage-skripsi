@@ -18,6 +18,7 @@ class CreateRelAlternativesTable extends Migration
             $table->string('kode_alternative');
             $table->string('kode_kriteria');
             $table->string('nilai');
+            $table->string('user_id')->nullable();
             $table->timestamps();
         });
     }

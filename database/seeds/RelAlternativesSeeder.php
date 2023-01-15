@@ -132,7 +132,127 @@ class RelAlternativesSeeder extends Seeder
                 'user_id' => 1,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
-            ]
+            ],
+            [
+                'kode_alternative' => 'TB01',
+                'kode_kriteria'=>'K01-DAT',
+                'nilai'=>5,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB01',
+                'kode_kriteria'=>'K02-BSRHNR',
+                'nilai'=>1,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB01',
+                'kode_kriteria'=>'K03-TNGKTKMPT',
+                'nilai'=>2,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB01',
+                'kode_kriteria'=>'K04-RPTKLN',
+                'nilai'=>3,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB01',
+                'kode_kriteria'=>'K05-KOMPLS',
+                'nilai'=>4,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB02',
+                'kode_kriteria'=>'K01-DAT',
+                'nilai'=>1,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB02',
+                'kode_kriteria'=>'K02-BSRHNR',
+                'nilai'=>2,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB02',
+                'kode_kriteria'=>'K03-TNGKTKMPT',
+                'nilai'=>3,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB02',
+                'kode_kriteria'=>'K04-RPTKLN',
+                'nilai'=>4,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB02',
+                'kode_kriteria'=>'K05-KOMPLS',
+                'nilai'=>5,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB03',
+                'kode_kriteria'=>'K01-DAT',
+                'nilai'=>2,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB03',
+                'kode_kriteria'=>'K02-BSRHNR',
+                'nilai'=>3,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB03',
+                'kode_kriteria'=>'K03-TNGKTKMPT',
+                'nilai'=>4,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB03',
+                'kode_kriteria'=>'K04-RPTKLN',
+                'nilai'=>5,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative' => 'TB03',
+                'kode_kriteria'=>'K05-KOMPLS',
+                'nilai'=>1,
+                'user_id' => 2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
         ]);
     }
 }

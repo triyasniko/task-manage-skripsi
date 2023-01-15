@@ -39,6 +39,33 @@ class AlternativesSeeder extends Seeder
                 'user_id' => 1,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s'),
+            ],
+            [
+                'kode_alternative'=>'TB01',
+                'nama_alternative'=>'TUGAS B1',
+                'keterangan'=>'Tugas B1',
+                'status'=>'doing',
+                'user_id'=>2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative'=>'TB02',
+                'nama_alternative'=>'TUGAS B2',
+                'keterangan'=>'Tugas B2',
+                'status'=>'doing',
+                'user_id'=>2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ],
+            [
+                'kode_alternative'=>'TB03',
+                'nama_alternative'=>'TUGAS B3',
+                'keterangan'=>'Tugas B3',
+                'status'=>'doing',
+                'user_id'=>2,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
             ]
         ]);
     }

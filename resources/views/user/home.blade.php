@@ -17,32 +17,45 @@
         <div class="card-body">
             <ul class="nav nav-tabs" id="myTab2" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">Your Task List</a>
+                    <a class="nav-link active" id="your-TaskList" data-toggle="tab" href="#yourTaskList" role="tab" aria-controls="yourTaskList" aria-selected="true">Your Task List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile" aria-selected="false">Recommendation For You</a>
                 </li>
             </ul>
             <div class="tab-content tab-bordered" id="myTab3Content">
-                <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home-tab2">
+                <div class="tab-pane fade show active" id="yourTaskList" role="tabpanel" aria-labelledby="your-TaskList">
                     <div class="table-responsive">
-                        <table class="table" id="table-1">
-                            <thead>
-                                <tr>
-                                    @dump($relAlternatives)
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                                
+                        <table class="table table-bordered table-hover text-dark" id="table-1">
+                           
+                            @foreach($alternatives as $key=>$value)
+                            <tr class="shadow-sm">
+                                <td>
+                                {{ $key }} - {{ $value }}
+                                </td>
+                            </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
-                    Sed sed metus vel lacus hendrerit tempus. Sed efficitur velit tortor, ac efficitur est lobortis quis. Nullam lacinia metus erat, sed fermentum justo rutrum ultrices. Proin quis iaculis tellus. Etiam ac vehicula eros, pharetra consectetur dui. Aliquam convallis neque eget tellus efficitur, eget maximus massa imperdiet. Morbi a mattis velit. Donec hendrerit venenatis justo, eget scelerisque tellus pharetra a.
-                </div>
-                <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab2">
-                    Vestibulum imperdiet odio sed neque ultricies, ut dapibus mi maximus. Proin ligula massa, gravida in lacinia efficitur, hendrerit eget mauris. Pellentesque fermentum, sem interdum molestie finibus, nulla diam varius leo, nec varius lectus elit id dolor. Nam malesuada orci non ornare vulputate. Ut ut sollicitudin magna. Vestibulum eget ligula ut ipsum venenatis ultrices. Proin bibendum bibendum augue ut luctus.
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover" id="table-1">
+                            <tr>
+                                <th></th>
+                                <th>Total</th>
+                                <th>Rank</th>
+                            </tr>
+                            @foreach($topsisNormal as $key=>$value)
+                            <tr>
+                                <th>{{ $key }} - {{ $alternatives[$key] }}</th>
+                                <td class="text-primary">{{ round($nilaiPref[$key], 3) }}</td>
+                                <td class="text-primary">{{ $altRank[$key] }}</td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
                 </div>
             </div>
             

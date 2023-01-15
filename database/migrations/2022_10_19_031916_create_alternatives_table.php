@@ -21,6 +21,7 @@ class CreateAlternativesTable extends Migration
             $table->unsignedInteger('rank')->nullable();
             $table->string('status', 10)->nullable(); //doing, done
             $table->string('user_id', 10)->nullable();
+            $table->string('tgl_duedate', 20)->nullable();
             $table->timestamps();
         });
 

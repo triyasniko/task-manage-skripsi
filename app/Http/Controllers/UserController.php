@@ -40,7 +40,13 @@ class UserController extends Controller{
         $nilaiPref=SiteHelpers::TOPSIS_preferensi($jarakSolusi);
         $altRank=SiteHelpers::get_rank($alternatives, $topsisNormal, $nilaiPref);
 
-        return view('user.home', ['relAlternatives'=>$relAlternatives]);
+        return view('user.home', [
+            'alternatives'=>$alternatives,
+            'relAlternatives'=>$relAlternatives,
+            'topsisNormal'=>$topsisNormal,
+            'nilaiPref'=>$nilaiPref,
+            'altRank'=>$altRank
+        ]);
     }
     public function storeActivity(Request $request){
         $id_user=SiteHelpers::get_user_id();

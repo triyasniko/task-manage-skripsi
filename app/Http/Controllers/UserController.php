@@ -70,8 +70,16 @@ class UserController extends Controller{
         $kriterias=DB::table('kriterias')->get();
         $newRelKriteriasAlternative=[];
         $datelineDays=Carbon::parse($data['taskDeadline'])->diffInDays(Carbon::now());
-        if($datelineDays<=0){
+        if($datelineDays<=1){
             $datelineDays=1;
+        }else if($datelineDays>1 && $datelineDays<=3){
+            $datelineDays=2;
+        }else if($datelineDays>3 && $datelineDays<=5){
+            $datelineDays=3;
+        }else if($datelineDays>5 && $datelineDays<=10){
+            $datelineDays=4;
+        }else if($datelineDays>10){
+            $datelineDays=5;
         }
 
         $dataRelAlternatives=[

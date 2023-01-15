@@ -19,6 +19,7 @@ class AlternativesSeeder extends Seeder
                 'keterangan'=> 'Tugas A1',
                 'status'=>'doing',
                 'user_id' => 1,
+                'tgl_duedate'=>'2023-01-17 00:00:00',
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
             ],
@@ -28,6 +29,7 @@ class AlternativesSeeder extends Seeder
                 'keterangan'=> 'Tugas A2',
                 'status'=>'doing',
                 'user_id' => 1,
+                'tgl_duedate'=>'2023-01-16 00:00:00',
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
             ],
@@ -37,6 +39,7 @@ class AlternativesSeeder extends Seeder
                 'keterangan'=> 'Tugas A3',
                 'status'=>'doing',
                 'user_id' => 1,
+                'tgl_duedate'=>'2023-01-18 00:00:00',
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s'),
             ],
@@ -46,6 +49,7 @@ class AlternativesSeeder extends Seeder
                 'keterangan'=>'Tugas B1',
                 'status'=>'doing',
                 'user_id'=>2,
+                'tgl_duedate'=>'2023-01-17 00:00:00',
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
             ],
@@ -55,6 +59,7 @@ class AlternativesSeeder extends Seeder
                 'keterangan'=>'Tugas B2',
                 'status'=>'doing',
                 'user_id'=>2,
+                'tgl_duedate'=>'2023-01-16 00:00:00',
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
             ],
@@ -64,6 +69,7 @@ class AlternativesSeeder extends Seeder
                 'keterangan'=>'Tugas B3',
                 'status'=>'doing',
                 'user_id'=>2,
+                'tgl_duedate'=>'2023-01-18 00:00:00',
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
             ]

@@ -20,14 +20,14 @@
                     <a class="nav-link active" id="your-TaskList" data-toggle="tab" href="#yourTaskList" role="tab" aria-controls="yourTaskList" aria-selected="true">Your Task List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile" aria-selected="false">Recommendation For You</a>
+                    <a class="nav-link" id="for-YourRecommendation" data-toggle="tab" href="#forYourRecommendation" role="tab" aria-controls="profile" aria-selected="false">Recommendation For You</a>
                 </li>
             </ul>
             <div class="tab-content tab-bordered" id="myTab3Content">
                 <div class="tab-pane fade show active" id="yourTaskList" role="tabpanel" aria-labelledby="your-TaskList">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover text-dark" id="table-1">
-                           
+                           @dump($alternatives)
                             @foreach($alternatives as $key=>$value)
                             <tr class="shadow-sm">
                                 <td>
@@ -38,7 +38,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
+                <div class="tab-pane fade" id="forYourRecommendation" role="tabpanel" aria-labelledby="for-YourRecommendation">
                     
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover" id="table-1">

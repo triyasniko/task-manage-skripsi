@@ -16,7 +16,7 @@ class RelAlternativesSeeder extends Seeder
             [
                 'kode_alternative' => 'TA01',
                 'kode_kriteria'=>'K01-DAT',
-                'nilai'=>2,
+                'nilai'=> 2,
                 'user_id' => 1,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
@@ -56,7 +56,7 @@ class RelAlternativesSeeder extends Seeder
             [
                 'kode_alternative' => 'TA02',
                 'kode_kriteria'=>'K01-DAT',
-                'nilai'=>3,
+                'nilai'=>1,
                 'user_id' => 1,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
@@ -96,7 +96,7 @@ class RelAlternativesSeeder extends Seeder
             [
                 'kode_alternative' => 'TA03',
                 'kode_kriteria'=>'K01-DAT',
-                'nilai'=>4,
+                'nilai'=>2,
                 'user_id' => 1,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')
@@ -136,7 +136,7 @@ class RelAlternativesSeeder extends Seeder
             [
                 'kode_alternative' => 'TB01',
                 'kode_kriteria'=>'K01-DAT',
-                'nilai'=>5,
+                'nilai'=>2,
                 'user_id' => 2,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'updated_at'=>date('Y-m-d H:i:s')

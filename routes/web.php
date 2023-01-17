@@ -13,6 +13,9 @@ Auth::routes();
 Route::middleware('auth')->group(function(){
     Route::get('/', 'UserController@index')->name('user.home');
     Route::post('/user/activity/store', 'UserController@storeActivity')->name('user.activity/store');
+    Route::get('/user/activity/delete/{kode_alternative}', 'UserController@deleteActivity')->name('user.activity/delete');
+    Route::get('/user/activity/edit/{kode_alternative}', 'UserController@editActivity')->name('user.activity/edit');
+    Route::post('/user/activity/update', 'UserController@updateActivity')->name('user.activity/update');
 });
 
 

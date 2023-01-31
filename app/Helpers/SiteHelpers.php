@@ -17,6 +17,7 @@ class SiteHelpers{
         ->orderBy('a.kode_alternative')
         ->orderBy('k.kode_kriteria')
         ->get();
+        // dd($results);
         $data=array();
         foreach($results as $result){
             $data[$result->kode_alternative][$result->kode_kriteria]=$result->nilai;
@@ -140,20 +141,6 @@ class SiteHelpers{
         );
         return $nRI;
     }
-    // public static function TOPSIS_get_hasil_analisa(){
-    //    $rows= DB::table('Alternatives as a')
-    //    ->join('Rel_Alternative as ra', 'ra.kode_alternatives', '=', 'a.kode_alternatives')
-    //    ->join('tb_kriteria as k', 'k.kode_kriteria', '=', 'ra.kode_kriteria')
-    //    ->select('a.kode_alternatives', 'k.kode_kriteria', 'ra.nilai')
-    //    ->orderBy('a.kode_alternatives', 'asc')
-    //    ->orderBy('k.kode_kriteria', 'asc')
-    //    ->get();
-    //      $data=array();
-    //         foreach($rows as $row){
-    //             $data[$row->kode_alternatives][$row->kode_kriteria]=$row->nilai;
-    //         }
-    //         return $data;
-    // }
     public static function TOPSIS_hasil_analisa(){
         $data=self::TOPSIS_get_hasil_analisa();
         return $data;

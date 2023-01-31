@@ -3,15 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-// Route::get('/admin', function () { 
-//     return view('admin.homeAdmin'); 
-// })->middleware('checkRole:admin')->name('admin.home');
 
-// Route::get('/', function () { 
-//     return view('home'); 
-// })->name('home');
+Route::redirect('/', '/login');
+
 Route::middleware('auth')->group(function(){
-    Route::get('/', 'UserController@index')->name('user.home');
+    Route::get('/user', 'UserController@index')->name('user.home');
     Route::post('/user/activity/store', 'UserController@storeActivity')->name('user.activity/store');
     Route::get('/user/activity/delete/{kode_alternative}', 'UserController@deleteActivity')->name('user.activity/delete');
     Route::get('/user/activity/edit/{kode_alternative}', 'UserController@editActivity')->name('user.activity/edit');
@@ -20,7 +16,9 @@ Route::middleware('auth')->group(function(){
 
 
 Route::middleware(['auth','checkRole:admin'])->group(function(){
-    Route::get('/admin/', 'AdminController@index')->name('admin.index');
+    Route::get('/admin', function(){
+        return redirect()->route('admin.alternative');
+    });
     Route::get('/admin/kriteria', 'AdminController@kriteria')->name('admin.kriteria');
     Route::get('/admin/kriteria/add', 'AdminController@addKriteria')->name('kriteria/add');
     Route::post('/admin/kriteria/store', 'AdminController@storeKriteria')->name('kriteria/store');

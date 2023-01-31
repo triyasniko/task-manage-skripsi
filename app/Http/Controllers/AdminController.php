@@ -150,6 +150,7 @@ class AdminController extends Controller
         return view ('admin.addAlternative');
     }
     public function storeAlternative(Request $request){
+        $id_user=SiteHelpers::get_user_id();
         $kode_alternative=$request->kode_alternative;
         $nama_alternative=$request->nama_alternative;
         $keterangan=$request->keterangan;
@@ -162,10 +163,11 @@ class AdminController extends Controller
             'kode_alternative' => $request->kode_alternative,
             'nama_alternative' => $request->nama_alternative,
             'keterangan' => $request->keterangan,
+            'user_id' => $id_user,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-        DB::insert("INSERT INTO rel_alternatives(kode_alternative, kode_kriteria, nilai, created_at, updated_at) SELECT '$kode_alternative', kode_kriteria, -1, NOW(), NOW() FROM kriterias");
+        DB::insert("INSERT INTO rel_alternatives(kode_alternative, kode_kriteria, nilai, user_id, created_at, updated_at) SELECT '$kode_alternative', kode_kriteria, -1, $id_user, NOW(), NOW() FROM kriterias");
         return redirect()->route('admin.alternative');
     }
     public function editAlternative($kode_alternative){
